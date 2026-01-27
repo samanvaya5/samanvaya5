@@ -1,0 +1,77 @@
+name: Update Private Contribution Stats
+
+on:
+  # Run every day at midnight UTC
+  schedule:
+    - cron: '0 0 * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+  # Run on push to main
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-stats.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch total contributions
+        id: stats
+        run: |
+          echo "Fetching contribution stats including private repos..."
+
+          # Use GitHub REST API to get contribution count
+          # This includes both public and private contributions
+          STATS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/users/samanvaya5/events?per_page=1" \
+            | jq -r 'length')
+
+          # Get total contributions from GraphQL API (more accurate, includes private)
+          GRAPHQL_RESPONSE=$(curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Content-Type: application/json" \
+            -d '{"query":"query { user(login: \"samanvaya5\") { contributionsCollection { totalContributionsWithPrivateContributions: contributionCalendar { totalContributions } } } }"}' \
+            https://api.github.com/graphql)
+
+          TOTAL=$(echo $GRAPHQL_RESPONSE | jq -r '.data.user.contributionsCollection.contributionCalendar.totalContributions // "N/A"')
+
+          echo "total=$TOTAL" >> $GITHUB_OUTPUT
+          echo "Total contributions (including private): $TOTAL"
+
+      - name: Update README
+        run: |
+          TOTAL="${{ steps.stats.outputs.total }}"
+
+          # Create the stats badge
+          BADGE="![Total Contributions](https://img.shields.io/badge/Contributions-$TOTAL-58A6FF?style=flat&logo=github&logoColor=white)"
+
+          # Add or update the stats line in README
+          # We'll add it right after the "## 📊 GitHub Stats" line
+          if grep -q "<!-- TOTAL_CONTRIBUTIONS_MARKER -->" README.md; then
+            # Update existing marker
+            sed -i "s|<!-- TOTAL_CONTRIBUTIONS_MARKER -->.*|<!-- TOTAL_CONTRIBUTIONS_MARKER -->\n$BADGE|g" README.md
+          else
+            # Add new marker after GitHub Stats section
+            sed -i '/^## 📊 GitHub Stats$/a \\n<!-- TOTAL_CONTRIBUTIONS_MARKER -->\n'"$BADGE"'' README.md
+          fi
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update contribution stats 📊 [skip ci]"
+          git push
