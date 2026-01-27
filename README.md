@@ -77,20 +77,11 @@ Let's build something amazing together!
 
 ![Node.js](https://img.shields.io/badge/Node.js-21262A?style=flat&logo=node.js&logoColor=43853D&labelColor=21262A)
 ![Python](https://img.shields.io/badge/Python-21262A?style=flat&logo=python&logoColor=3776AB&labelColor=21262A)
-![Go](https://img.shields.io/badge/Go-21262A?style=flat&logo=go&logoColor=00ADD8&labelColor=21262A)
+
 ![Express](https://img.shields.io/badge/Express-21262A?style=flat&logo=express&logoColor=FFFFFF&labelColor=21262A)
 ![Django](https://img.shields.io/badge/Django-21262A?style=flat&logo=django&logoColor=092E20&labelColor=21262A)
 ![FastAPI](https://img.shields.io/badge/FastAPI-21262A?style=flat&logo=fastapi&logoColor=009688&labelColor=21262A)
 
-### 🤖 AI & Machine Learning
-
-![TensorFlow](https://img.shields.io/badge/TensorFlow-21262A?style=flat&logo=tensorflow&logoColor=FF6F00&labelColor=21262A)
-![PyTorch](https://img.shields.io/badge/PyTorch-21262A?style=flat&logo=pytorch&logoColor=EE4C2C&labelColor=21262A)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-21262A?style=flat&logo=scikit-learn&logoColor=F7931E&labelColor=21262A)
-![OpenAI](https://img.shields.io/badge/OpenAI-21262A?style=flat&logo=openai&logoColor=412991&labelColor=21262A)
-![Keras](https://img.shields.io/badge/Keras-21262A?style=flat&logo=keras&logoColor=D00000&labelColor=21262A)
-![Pandas](https://img.shields.io/badge/Pandas-21262A?style=flat&logo=pandas&logoColor=150458&labelColor=21262A)
-![NumPy](https://img.shields.io/badge/NumPy-21262A?style=flat&logo=numpy&logoColor=013243&labelColor=21262A)
 
 ### ☁️ Cloud & DevOps
 
@@ -110,14 +101,7 @@ Let's build something amazing together!
 ![MySQL](https://img.shields.io/badge/MySQL-21262A?style=flat&logo=mysql&logoColor=4479A1&labelColor=21262A)
 ![SQLite](https://img.shields.io/badge/SQLite-21262A?style=flat&logo=sqlite&logoColor=003B57&labelColor=21262A)
 
-### 🔧 Tools & Platforms
 
-![Git](https://img.shields.io/badge/Git-21262A?style=flat&logo=git&logoColor=F05032&labelColor=21262A)
-![GitHub](https://img.shields.io/badge/GitHub-21262A?style=flat&logo=github&logoColor=FFFFFF&labelColor=21262A)
-![VS Code](https://img.shields.io/badge/VS_Code-21262A?style=flat&logo=visual-studio-code&logoColor=007ACC&labelColor=21262A)
-![Linux](https://img.shields.io/badge/Linux-21262A?style=flat&logo=linux&logoColor=FCC624&labelColor=21262A)
-![Jupyter](https://img.shields.io/badge/Jupyter-21262A?style=flat&logo=jupyter&logoColor=F37626&labelColor=21262A)
-![Postman](https://img.shields.io/badge/Postman-21262A?style=flat&logo=postman&logoColor=FF6C37&labelColor=21262A)
 
 ---
 
